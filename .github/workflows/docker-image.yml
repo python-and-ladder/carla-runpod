@@ -14,7 +14,7 @@ jobs:
       uses: docker/login-action@v3
       with:
         username: ${{ vars.aruvib }}
-        password: ${{ secrets.dckr_pat_cYr-8HpvWddhJP_aKcAM_C0JO0U }}
+        password: ${{ secrets.dckr_pat_TIz5N04uocVU7n_r1ONW5Y5jOBA }}
 
     - name: Set up QEMU  # Helps v6 multi-arch stability
       uses: docker/setup-qemu-action@v3
