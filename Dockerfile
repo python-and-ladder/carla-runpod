@@ -1,8 +1,16 @@
-FROM python:3.10-alpine3.19
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY app.py .
+# Install build deps (if needed) then Python deps
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Run the script when container starts
-CMD ["python", "app.py"]
+# Copy your source
+COPY . .
+
+# Document the port FastAPI/uvicorn will listen on
+EXPOSE 8000
+
+# Start FastAPI via uvicorn, listening on all interfaces
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
