@@ -1,13 +1,14 @@
-import time
-import os
+# app/main.py
+from fastapi import FastAPI
 
-print("Hello from Docker on RunPod!")
-print(f"Container ID: {os.uname().nodename}")
-print(f"Python version: {os.sys.version}")
+app = FastAPI()
 
-# Simulate some work
-for i in range(5):
-    print(f"Working... {i+1}/5")
-    time.sleep(1)
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
-print("Script complete!")
+@app.get("/predict")
+def predict():
+    # TODO: call your existing Python logic here
+    result = {"message": "hello from FastAPI"}
+    return result
